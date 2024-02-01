@@ -1,0 +1,153 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+#define n 10
+string arr[n]={""};//the array indices are empty and no empty string ->"" not " " 
+string sarr[n]={""};
+
+//to initialize the status array
+    void status_arr(string arr){
+        for(int i=0;i<n;i++){
+            sarr[i]="not completed";
+        }
+    }
+    
+//-------------------------------------------
+
+//to store tasks
+    void add(string task){
+      int i=0;
+      while(arr[i]!=""){
+          i++;
+      }
+      arr[i]=task;
+      cout<<arr[i]<<"-added\n";
+    }
+    
+//to input task     
+    void input_task(){
+        cout<<"how many task to add : ";
+        int num;
+        cin>>num;
+        
+        while(num){
+            cout<<"Enter your task : ";
+            string t;
+            cin>>t;
+            add(t);
+            num--;
+        }
+    }
+//to view all tasks    
+    void view_task(){
+        cout<<"the present list is :\n";
+        int i=0;
+        while(arr[i]!=""){
+            cout<<arr[i]<<"\n";
+            i++;
+        }
+    }
+    
+//to delete task
+    void deletetask(string task){
+        
+        int i=0;
+        while(arr[i]!=task){
+            i++;
+        }
+        arr[i]="-";
+        sarr[i]="deleted";
+    }
+//to mark task as completed or not completed    
+    void mark_task(string task){
+        int i=0;
+        while(arr[i]!=task){
+            i++;
+        }
+        sarr[i]="completed";
+    }
+    
+
+//to know status of tasks whether completed or not
+
+    void status_all(){
+        cout<<"status of the list \n";
+        int i=0;
+        while(arr[i]!=""){
+            cout<<arr[i]<<"-"<<sarr[i]<<"\n";
+            i++;
+        }
+    }
+    
+    void status_one(string task){
+        int i=0;
+        while(arr[i]!=task){
+            i++;
+        }
+        cout<<arr[i]<<" - "<<sarr[i]<<"\n";
+    }
+    
+int main()
+{
+    input_task();
+    view_task();
+    status_all();
+
+//check status of specific task
+    cout<<"Do you want to know status of any task( enter yes/no ): ";
+    string b;
+    cin>>b;
+    if(b=="yes"){
+        int c;
+        cout<<"Enter the number of tasks whose status you want to know : ";
+        cin>>c;
+        while(c){
+            cout<<"Enter the task : ";
+            string status_task;
+            cin>>status_task;
+            c--;
+            status_one(status_task);
+        }
+    }
+//mark the tasks
+    string e;
+    cout<<"Do you want to mark task : ";
+    cin>>e;
+    if(e=="yes"){
+        int f;
+        cout<<"how many tasks do you want to mark : ";
+        cin>>f;
+        
+        while(f){
+        string x;
+        cout<<"Enter the task to be marked : ";
+        cin>>x;
+        mark_task(x);
+        f--;
+        }
+    }
+//delete task   
+    cout<<"Do you want to delete task( enter yes/no ): ";
+    string d;
+    cin>>d;
+    if(d=="yes"){
+        int m;
+        cout<<"how many tasks do you want to delete : ";
+        cin>>m;
+        
+        while(m){
+            string n_task;
+            cout<<"Enter the task to be deletd : ";
+            cin>>n_task;
+            deletetask(n_task);
+            m--;
+        }
+    } 
+    // check status of all tasks
+    cout<<"status of all tasks: ";
+    status_all();
+    return 0;
+}
+
+
